@@ -20,7 +20,7 @@ const CryptoComponent = () => {
   const symbols = Object.keys(tickerData);
 
   return (
-    <div className="w-full h-full overflow-hidden transition-colors duration-200 dark:bg-gray-900">
+    <div className="w-full h-screen overflow-hidden transition-colors duration-200 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto p-4">
         <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
           Cryptocurrency Prices

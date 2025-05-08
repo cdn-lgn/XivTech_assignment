@@ -1,50 +1,102 @@
-Real-Time Crypto Price Tracker.
-Please make enhancements per your skill level, and mention those. Send a live link.
+# Crypto Price Tracker
 
-🎯 Objective:
-Build a responsive React + Redux Toolkit app that tracks real-time crypto prices (like CoinMarketCap), simulating WebSocket updates and managing all state via Redux.
+Real-time cryptocurrency price tracker built with React and Redux Toolkit, featuring live price updates via WebSocket integration.
 
-🛠️ Tech Reqs
-📊 UI Table:
-- Display 5 assets (e.g., BTC, ETH, USDT) in a table:
-  # | Logo | Name | Symbol | Price | 1h % | 24h % | 7d % | Market Cap | 24h Volume | Circulating Supply | Max Supply | 7D Chart
-- Use sample crypto data.
-- Color-code % changes: green (positive), red (negative).
-- 7D chart can be static (SVG/image).
-- Make table responsive.
+![Demo GIF](demo.gif)
 
-🔄 Real-Time Updates:
-- Simulate WebSocket using setInterval/mocked class.
-- Every 1–2 seconds, randomly change:
-  - Price
-  - % Changes
-  - 24h Volume
-- Dispatch Redux actions (no local state).
+## 🚀 Features
 
-🧠 Redux State Management:
-- Use Redux Toolkit (createSlice, configureStore).
-- Store all asset data in Redux.
-- Use selectors to optimize re-renders.
+- Real-time price updates via Binance WebSocket
+- Live price charts with 7-day history
+- Color-coded price movements
+- Responsive design with neumorphic UI
+- Automatic data refresh and WebSocket reconnection
 
-✅ Delivery
-📁 GitHub/GitLab Repo:
-- Push code to repo.
-- Include README.md with:
-  - Setup instructions
-  - Tech stack + architecture
-  - Embedded demo GIF or video link
+## 🛠️ Tech Stack
 
-📹 Demo Video/GIF:
-- 2–5 min walkthrough showing:
-  - UI layout
-  - Live updates
-  - State flow
-  - Thought process
+- **Frontend:** React 18
+- **State Management:** Redux Toolkit
+- **Real-time Data:** Binance WebSocket API
+- **Additional Data:** CoinGecko API
+- **Charts:** Chart.js with react-chartjs-2
+- **Styling:** TailwindCSS
 
-🌟 Bonus:
-- Integrate real WebSocket (e.g., Binance)
-- Filters/sorting (top gainers, etc.)
-- localStorage support
-- Unit tests (reducers/selectors)
-- TypeScript
-Submission deadline: 08 May, 2025
+## 🏗️ Architecture
+
+```
+src/
+├── components/          # React components
+│   ├── CryptoComponent.jsx    # Main crypto table
+│   └── Crypto7DChart.jsx      # Price chart component
+├── redux/              # Redux state management
+│   └── cryptoSlice.js         # Crypto data slice
+├── services/           # External services
+│   └── binanceSocket.js       # WebSocket connection
+├── customHook/         # Custom React hooks
+│   └── useCryptoData.js       # Data fetching hook
+└── App.js             # Root component
+```
+
+## 📦 Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/crypto-tracker.git
+cd crypto-tracker
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm start
+```
+
+## 🔄 Data Flow
+
+1. **Initial Load:**
+   - CoinGecko API fetches basic crypto information
+   - Binance API fetches 7-day historical data
+   - Redux store is populated with initial data
+
+2. **Real-time Updates:**
+   - Binance WebSocket provides live price updates
+   - Price changes trigger Redux actions
+   - UI automatically updates through Redux selectors
+
+3. **WebSocket Reconnection:**
+   - Automatic reconnection on connection loss
+   - Exponential backoff retry mechanism
+   - Connection status monitoring
+
+## 🎯 API Integration
+
+### Binance WebSocket
+```javascript
+const BINANCE_WS_URL = "wss://stream.binance.com:9443/stream?streams=..."
+```
+- Provides real-time price updates
+- Returns ticker and kline data
+- Supports multiple currency pairs
+
+### CoinGecko API
+```javascript
+const COINGECKO_API = "https://api.coingecko.com/api/v3/coins/markets?..."
+```
+- Fetches market data and metadata
+- Updates every 5 seconds
+- Provides additional market metrics
+
+## 🧪 Testing
+
+Run the test suite:
+```bash
+npm test
+```
+
+## 📝 License
+
+MIT License - feel free to use this project for learning or development.
