@@ -32,7 +32,6 @@ export function useCryptoData() {
         const response = await fetch(COINGECKO_API);
         const data = await response.json();
 
-        // Use for...of to handle async/await inside the loop
         for (const coin of data) {
           const symbol = coin.symbol.toUpperCase() + "USDT";
 
@@ -60,8 +59,8 @@ export function useCryptoData() {
 
     fetchCoinGeckoData();
 
-    const interval = setInterval(fetchCoinGeckoData, 5000); // Update every 5 seconds
-    return () => clearInterval(interval); // Clean up on unmount
+    const interval = setInterval(fetchCoinGeckoData, 5000);
+    return () => clearInterval(interval);
   }, [dispatch]);
 
 

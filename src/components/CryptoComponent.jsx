@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useCryptoData } from "../customHook/useCryptoData";
-import Sparkline from "./Crypto7DChart";
+import Sparkline from "./Sparkline";
 
 const formatNumber = (num) => {
   if (!num) return '--';
